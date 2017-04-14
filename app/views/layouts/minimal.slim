@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = render partial: "head"
+    title = yield :title
+  body
+    = yield :body_attributes if content_for? :body_attributes
+    /header class="page-header"
+      .container
+        center
+          h2 = yield(:title)
+        .divider
+    main
+      .section
+        .container = yield
+    /footer class="page-footer"
+      .container = yield :footer_top
+      .footer-copyright
+        .container = yield :footer_copyright

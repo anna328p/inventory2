@@ -1,0 +1,8 @@
+- content_for :title, "Editing #{@item_type.name}"
+
+== render 'form'
+
+= link_to 'Show', @item_type
+'  |
+= link_to 'Back', item_types_path
+

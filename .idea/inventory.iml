@@ -173,6 +173,7 @@
     <orderEntry type="library" scope="PROVIDED" name="omniauth-oauth2 (v1.4.0, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v2.4.0.0, ruby-2.4.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pg (v0.20.0, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="powerpack (v0.1.1, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v3.8.2, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.0.1, ruby-2.4.0-p0) [gem]" level="application" />
@@ -196,7 +197,6 @@
     <orderEntry type="library" scope="PROVIDED" name="spring-watcher-listen (v2.0.1, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.1, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.2.0, ruby-2.4.0-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.3.13, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="temple (v0.7.7, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.19.4, ruby-2.4.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.6, ruby-2.4.0-p0) [gem]" level="application" />

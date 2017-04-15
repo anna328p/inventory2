@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :items
+
+	get 'transactions/check_out'
+	get 'transactions/check_in'
   resources :transactions
   get 'admin/index'
 

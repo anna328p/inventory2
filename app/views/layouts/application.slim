@@ -10,9 +10,9 @@ html
 		header.page-header
 			.container
 				.row
-					.col.s12.m8
+					.col.s12.m10
 						h2 = yield(:title)
-					.col.s12.m4
+					.col.s12.m2
 						.right-align
 							.vcenter
 								span.vcenter-span
@@ -30,8 +30,4 @@ html
 			.section
 				.container = yield
 		- if can? :manage, :all
-			footer class="page-footer light-blue darken-4"
-				.container
-					.row
-						.col.s12.m8 You are an administrator.
-						.col.s12.m4.right-align = link_to '🔗 Administration panel', admin_index_path, class: 'black-text'
+			= render 'application/admin_footer'

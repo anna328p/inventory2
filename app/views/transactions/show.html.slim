@@ -1,20 +1,20 @@
 p#notice = notice
 
 p
-  strong Type:
-  = @transaction.type
+  strong Transaction type:
+  = @transaction.transaction_type
+p
+  strong Item:
+  = @transaction.item
+p
+  strong User:
+  = @transaction.user
 p
   strong Notes:
   = @transaction.notes
 p
-  strong User:
-  = @transaction.user_id
-p
-  strong Item:
-  = @transaction.item_id
-p
-  strong Loan days:
-  = @transaction.loan_days
+  strong Loan time:
+  = @transaction.loan_time
 
 = link_to 'Edit', edit_transaction_path(@transaction)
 '  |

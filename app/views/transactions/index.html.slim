@@ -1,13 +1,13 @@
-h1 Listing transactions
+- content_for :title, 'Listing transactions'
 
 table
   thead
     tr
-      th Type
-      th Notes
-      th User
+      th Transaction type
       th Item
-      th Loan days
+      th User
+      th Notes
+      th Loan time
       th
       th
       th
@@ -15,11 +15,11 @@ table
   tbody
     - @transactions.each do |transaction|
       tr
-        td = transaction.type
+        td = transaction.transaction_type ? 'In' : 'Out'
+        td = transaction.item
+        td = transaction.user
         td = transaction.notes
-        td = transaction.user_id
-        td = transaction.item_id
-        td = transaction.loan_days
+        td = transaction.loan_time
         td = link_to 'Show', transaction
         td = link_to 'Edit', edit_transaction_path(transaction)
         td = link_to 'Destroy', transaction, data: { confirm: 'Are you sure?' }, method: :delete

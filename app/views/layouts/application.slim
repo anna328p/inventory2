@@ -1,33 +1,36 @@
 doctype html
 html
-  head
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
-    = render partial: "head"
-    title = yield :title
-  body
-    header.page-header
-      .container
-      	.row
-					.col.s8
+	head
+		= stylesheet_link_tag		'application', media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag 'application', 'data-turbolinks-track' => true
+		= csrf_meta_tags
+		= render partial: "head"
+		title = yield :title
+	body
+		header.page-header
+			.container
+				.row
+					.col.s12.m8
 						h2 = yield(:title)
-					.col.s4
+					.col.s12.m4
 						.right-align
 							.vcenter
 								span.vcenter-span
 									- if user_signed_in?
 										= link_to "<img class=\"profile-img\" src=\"#{current_user.image}\"></img>".html_safe, edit_user_registration_path(current_user)
-										= link_to current_user.name, edit_user_registration_path(current_user)
 										span class="log-icon"
 											= link_to '<i class="material-icons">power_settings_new</i>'.html_safe, destroy_user_session_path, :method => :delete
 									- else
 										span class="log-icon"
 											= link_to '<i class="material-icons">exit_to_app</i>'.html_safe, new_user_session_path
-    main
-      .section
-        .container = yield
-    /footer class="page-footer"
-      .container = yield :footer_top
-      .footer-copyright
-        .container = yield :footer_copyright
+									span class="log-icon"
+										= link_to '<i class="material-icons">home</i>'.html_safe, root_path
+		main
+			.section
+				.container = yield
+		- if can? :manage, :all
+			footer class="page-footer green darken-4"
+				.container
+					.row
+						.col.s12.m8 You are an administrator.
+						.col.s12.m4.right-align = link_to 'Administration panel', admin_index_path

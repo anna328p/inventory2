@@ -1,4 +1,4 @@
 class Transaction < ApplicationRecord
-	belongs_to :user
-	has_one :item
+  belongs_to :item
+  belongs_to :user
 end

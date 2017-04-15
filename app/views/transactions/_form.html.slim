@@ -1,24 +1,24 @@
 = form_for @transaction do |f|
   - if @transaction.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@transaction.errors.count, "error")} prohibited this transaction from being saved:"
+      h2 = "#{pluralize(@transaction.errors.count, 'error')} prohibited this transaction from being saved:"
       ul
         - @transaction.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :type
-    = f.check_box :type
-  .field
+  .field.input-field
+		= f.check_box :transaction_type
+		= f.label :transaction_type
+  .field.input-field
+    = f.label :item
+    = f.text_field :item
+  .field.input-field
+    = f.label :user
+    = f.text_field :user
+  .field.input-field
     = f.label :notes
-    = f.text_field :notes
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :item_id
-    = f.number_field :item_id
-  .field
-    = f.label :loan_days
-    = f.number_field :loan_days
-  .actions = f.submit
+    = f.text_area :notes, class: 'materialize-textarea'
+  .field.input-field
+    = f.label :loan_time
+    = f.number_field :loan_time
+  .actions = f.submit class: 'btn waves-effect waves-light'

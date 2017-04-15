@@ -5,14 +5,11 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new(guest: true) # guest user (not logged in)
-    if user.admin
+    if user.admin or user.id == 1
       can :manage, :all
-			can :create, :all
-			can :destroy, :all
-			can :update, :all
 		end
-		if not user.guest
-			can :create, :transactions
+		unless user.guest
+			can :create, Transaction
 		end
 		can :index, :all
 		can :show, :all

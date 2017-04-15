@@ -16,6 +16,18 @@
 
 @import "materialize";
 
+
+
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
 .vcenter {
   display: table;
   height: 100px;
@@ -29,7 +41,9 @@
 
 .profile-img {
   width: 32px;
-  margin: 16px 8px -8px 4px;
+  margin-right: 4px;
+  margin-top: 4px;
+  margin-bottom: -3px;
   border-radius: 50%;
 }
 

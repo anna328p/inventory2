@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415015106) do
+ActiveRecord::Schema.define(version: 20170415022829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,27 +24,14 @@ ActiveRecord::Schema.define(version: 20170415015106) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer  "item_type_id"
     t.integer  "inst_num"
     t.boolean  "checked_out"
-    t.text     "notes"
+    t.integer  "user_id"
+    t.string   "notes"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "item_type_id"
-    t.integer  "user_id"
     t.index ["item_type_id"], name: "index_items_on_item_type_id", using: :btree
-    t.index ["user_id"], name: "index_items_on_user_id", using: :btree
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.boolean  "transaction_type"
-    t.integer  "item_id"
-    t.integer  "user_id"
-    t.text     "notes"
-    t.integer  "loan_time"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["item_id"], name: "index_transactions_on_item_id", using: :btree
-    t.index ["user_id"], name: "index_transactions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,7 +58,4 @@ ActiveRecord::Schema.define(version: 20170415015106) do
   end
 
   add_foreign_key "items", "item_types"
-  add_foreign_key "items", "users"
-  add_foreign_key "transactions", "items"
-  add_foreign_key "transactions", "users"
 end

@@ -22,15 +22,16 @@ html
 											= link_to '<i class="material-icons">power_settings_new</i>'.html_safe, destroy_user_session_path, :method => :delete
 									- else
 										span class="log-icon"
-											= link_to '<i class="material-icons">exit_to_app</i>'.html_safe, new_user_session_path
+											= link_to '<i class="material-icons">exit_to_app</i>'.html_safe, user_google_oauth2_omniauth_authorize_path
+											/new_user_session_path
 									span class="log-icon"
 										= link_to '<i class="material-icons">home</i>'.html_safe, root_path
 		main
 			.section
 				.container = yield
 		- if can? :manage, :all
-			footer class="page-footer green darken-4"
+			footer class="page-footer light-blue darken-4"
 				.container
 					.row
 						.col.s12.m8 You are an administrator.
-						.col.s12.m4.right-align = link_to 'Administration panel', admin_index_path
+						.col.s12.m4.right-align = link_to '🔗 Administration panel', admin_index_path, class: 'black-text'

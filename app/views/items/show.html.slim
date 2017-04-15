@@ -1,8 +1,9 @@
+- content_for :title, "#{@item.type_name} #{@item.inst_num}"
 p#notice = notice
 
 p
-  strong Item type:
-  = @item.item_type
+  strong Item type:&nbsp;
+  = link_to @item.type_name, item_type_path(@item.item_type)
 p
   strong Inst num:
   = @item.inst_num
@@ -16,6 +17,7 @@ p
   strong Notes:
   = @item.notes
 
-= link_to 'Edit', edit_item_path(@item)
-'  |
+- if can? :edit, Item
+	= link_to 'Edit', edit_item_path(@item)
+	'  |
 = link_to 'Back', items_path

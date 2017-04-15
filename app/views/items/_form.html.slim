@@ -1,24 +1,18 @@
 = form_for @item do |f|
-  - if @item.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@item.errors.count, "error")} prohibited this item from being saved:"
-      ul
-        - @item.errors.full_messages.each do |message|
-          li = message
+	- if @item.errors.any?
+		#error_explanation
+			h2 = "#{pluralize(@item.errors.count, "error")} prohibited this item from being saved:"
+			ul
+				- @item.errors.full_messages.each do |message|
+					li = message
 
-  .field
-    = f.label :item_type
-    = f.text_field :item_type
-  .field
-    = f.label :inst_num
-    = f.number_field :inst_num
-  .field
-    = f.label :checked_out
-    = f.check_box :checked_out
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :notes
-    = f.text_field :notes
-  .actions = f.submit
+	.field.input-field
+		= f.select :item_type_id, options_from_collection_for_select(ItemType.all, 'id', 'name')
+		= f.label :item_type_id, 'Item type, or ItemID part 1'
+	.field.input-field
+		= f.label :inst_num, 'Instance number, or ItemID part 2'
+		= f.number_field :inst_num
+	.field.input-field
+		= f.label :notes
+		= f.text_field :notes
+	.actions = f.submit class: 'btn waves-effect waves-light'

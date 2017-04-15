@@ -1,15 +1,26 @@
+- content_for :title, "#{@item_type.name}"
 p#notice = notice
 
 p
-  strong Code:
-  = @item_type.code
-p
-  strong Name:
-  = @item_type.name
-p
-  strong Description:
-  = @item_type.description
+	strong #{@item_type.code}:&nbsp;
+	| #{@item_type.description}
+
+h4 Items of this type:
+table
+	thead
+		tr
+			th width='75px' ID
+			th width='50px' Out?
+			th Checked out by
+			th Notes
+	tbody
+		- Item.where(item_type_id: @item_type.id).each do |i|
+			tr
+				td = link_to "#{@item_type.code} #{i.inst_num.to_s.rjust 2, ?0}", item_path(i)
+				td.material-icons = i.checked_out ? 'check_circle' : 'not_interested'
+				td = i.checked_out ? User.find(i.user_id).name : 'n/a'
+				td = i.notes
 
 = link_to 'Edit', edit_item_type_path(@item_type)
-'  |
+'	|
 = link_to 'Back', item_types_path

@@ -7,8 +7,6 @@ table
       th Name
       th Description
       th
-      th
-      th
 
   tbody
     - @item_types.each do |item_type|
@@ -16,9 +14,13 @@ table
         td = item_type.code
         td = item_type.name
         td = item_type.description
-        td = link_to 'Show', item_type
-        td = link_to 'Edit', edit_item_type_path(item_type)
-        td = link_to 'Destroy', item_type, data: { confirm: 'Are you sure?' }, method: :delete
+				td
+					- if can? :show, ItemType
+						i.material-icons = link_to 'pageview', item_type
+					- if can? :update, ItemType
+						i.material-icons = link_to 'edit', edit_item_path(item_type)
+					- if can? :destroy, ItemType
+						i.material-icons = link_to 'delete', item_type, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 

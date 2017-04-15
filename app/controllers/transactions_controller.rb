@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+	load_and_authorize_resource
 
   # GET /transactions
   # GET /transactions.json
@@ -26,6 +27,10 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
 
+		item_id = params[:item_id]
+
+		@transaction.user = current_user
+		@transaction
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
@@ -60,6 +65,13 @@ class TransactionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	def check_in
+	end
+
+	def check_out
+		@transaction = Transaction.new
+	end
 
   private
     # Use callbacks to share common setup or constraints between actions.

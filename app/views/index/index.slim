@@ -1,22 +1,8 @@
-- content_for :title, "Tech Lab Inventory"
+- content_for :title, 'Tech Lab Inventory'
 .container
   .section
-    .row style="text-align: center" align="center"
-      .col.s0.m2.l2
-      .col.s12.m4.l4
-        a class="waves-effect waves-light btn-large" href="/transactions/check/out" Check Out
-      .col.s12.m4.l4
-        a class="waves-effect waves-light btn-large" href="/transactions/check/in" Check In
-      .col.s0.m2.l2
-  /.bottom
-    .row.right-align
-      = link_to "Admin", admin_path, class: "waves-effect waves-teal btn-flat"
-
-
-      /.col.s12.m12.l4
-        a class="waves-effect waves-light btn-large" href="/items" View Items
-/- content_for :footer_copyright
-  .row
-    .col.s9 By Dmitry Kudriavtsev
-    .col.s3 align="right"
-      /a class="waves-effect waves-light btn-flat" href="/admin" Admin
+    .row
+      .col.s12.m4.l4.offset-m2.offset-l2.center-align
+        a class="waves-effect waves-light btn-large" href="/transactions/check_out" Check Out
+      .col.s12.m4.l4.center-align
+        a class="waves-effect waves-light btn-large" href="/transactions/check_in" Check In

@@ -31,10 +31,9 @@
 
 - if current_user.admin
 	h3 Admin
-	
-h3 Delete my account
 
-p Unhappy?
-= link_to 'Delete my account', registration_path(resource_name), data: { confirm: 'Are you sure?'}, method: :delete, :class => 'waves-effect waves-light btn'
-br
-= link_to 'Back', :back
+- if current_user.id != 1
+	h3 Delete my account
+
+	p Unhappy?
+	= link_to 'Delete my account', registration_path(resource_name), data: { confirm: 'Are you sure?'}, method: :delete, :class => 'waves-effect waves-light btn'

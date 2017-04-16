@@ -1,1 +1,17 @@
 - content_for :title, 'Admin control panel'
+
+.row
+	.col.s12.m6.l4
+		.center-align
+			h4 Manage records
+			p = link_to 'Items', items_path, class: 'waves-effect waves-light btn'
+			p = link_to 'Item types', item_types_path, class: 'waves-effect waves-light btn'
+			p = link_to 'Transactions', transactions_path, class: 'waves-effect waves-light btn'
+	.col.s12.m6.l4
+		.center-align
+			h4 Tools
+			p Coming soon!
+	.col.s12.m6.l4
+		.center-align
+			h4 User management
+			p Coming soon!

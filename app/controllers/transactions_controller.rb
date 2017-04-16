@@ -27,10 +27,18 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
 
-		item_id = params[:item_id]
+		i = Item.find @transaction.item_id
 
+		if (@transaction.transaction_type = true)
+			i.user_id = nil
+			i.checked_out = false
+			i.save
+		else
+			i.user_id = @transaction.user_id
+			i.checked_out = 'true'
+			i.save
+		end
 		@transaction.user = current_user
-		@transaction
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }

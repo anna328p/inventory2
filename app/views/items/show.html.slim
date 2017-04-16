@@ -2,22 +2,40 @@
 p#notice = notice
 
 p
-  strong Item type:&nbsp;
-  = link_to @item.type_name, item_type_path(@item.item_type)
+	strong Item type:&nbsp;
+	= link_to @item.type_name, item_type_path(@item.item_type)
 p
-  strong Inst num:
-  = @item.inst_num
+	strong Inst num:
+	= @item.inst_num
 p
-  strong Checked out:
-  = @item.checked_out
+	strong Checked out:
+	= @item.checked_out ? ('Yes, by ' + link_to(User.find(@item.user_id).name, user_path(@item.user_id))).html_safe : 'No'
 p
-  strong User:
-  = @item.user_id
-p
-  strong Notes:
-  = @item.notes
+	strong Notes:
+	= @item.notes
+
+- if can? :view, Transaction
+	h4 Transaction history
+	table
+		thead
+			tr
+				th Date
+				th width="10%" Type
+				th By
+				th Notes
+				th Time
+		tbody
+			- Transaction.where(item_id: @item.id).order(created_at: :desc).each do |t|
+				tr
+					td = link_to t.created_at.strftime('%m/%d/%Y %I:%M %p'), transaction_path(t)
+					td = t.transaction_type ? 'In' : 'Out'
+					td = link_to User.find(t.user_id).name, user_path(User.find(t.user_id))
+					td = t.notes
+					td = t.loan_time.to_s + ' days'
+
+
 
 - if can? :edit, Item
 	= link_to 'Edit', edit_item_path(@item)
-	'  |
+	'	|
 = link_to 'Back', items_path

@@ -1,24 +1,21 @@
 = form_for @transaction do |f|
-  - if @transaction.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@transaction.errors.count, 'error')} prohibited this transaction from being saved:"
-      ul
-        - @transaction.errors.full_messages.each do |message|
-          li = message
+	- if @transaction.errors.any?
+		#error_explanation
+			h2 = "#{pluralize(@transaction.errors.count, 'error')} prohibited this transaction from being saved:"
+			ul
+				- @transaction.errors.full_messages.each do |message|
+					li = message
 
-  .field.input-field
+	.field.input-field
 		= f.check_box :transaction_type
 		= f.label :transaction_type
-  .field.input-field
-    = f.label :item
-    = f.text_field :item
-  .field.input-field
-    = f.label :user
-    = f.text_field :user
-  .field.input-field
-    = f.label :notes
-    = f.text_area :notes, class: 'materialize-textarea'
-  .field.input-field
-    = f.label :loan_time
-    = f.number_field :loan_time
-  .actions = f.submit class: 'btn waves-effect waves-light'
+	.field.input-field
+		= f.select :item_id, options_from_collection_for_select(Item.all, 'id', 'id')
+		= f.label :item_id, 'Item'
+	.field.input-field
+		= f.label :notes
+		= f.text_area :notes, class: 'materialize-textarea'
+	.field.input-field
+		= f.label :loan_time
+		= f.number_field :loan_time
+	.actions = f.submit class: 'btn waves-effect waves-light'

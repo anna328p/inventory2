@@ -16,6 +16,9 @@
 //= require materialize-sprockets
 //= require_tree .
 
+function material_select() {
+    $('select').material_select();
+}
 $(document).ready(function() {
     $('select').material_select();
 });

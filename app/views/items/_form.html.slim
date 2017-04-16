@@ -6,9 +6,14 @@
 				- @item.errors.full_messages.each do |message|
 					li = message
 
-	.field.input-field
-		= f.select :item_type_id, options_from_collection_for_select(ItemType.all, 'id', 'name')
-		= f.label :item_type_id, 'Item type, or ItemID part 1'
+	.row
+		.col.s11
+			.field.input-field
+				= f.select :item_type_id, options_from_collection_for_select(ItemType.all, 'id', 'name')
+				= f.label :item_type_id, 'Item type, or ItemID part 1'
+		.col.s1
+			a.waves-effect.waves-light.btn.btn-floating onclick="material_select()"
+				i.material-icons refresh
 	.field.input-field
 		= f.label :inst_num, 'Instance number, or ItemID part 2'
 		= f.number_field :inst_num

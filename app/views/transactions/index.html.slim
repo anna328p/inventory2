@@ -3,27 +3,26 @@
 table
   thead
     tr
-      th Transaction type
+      th ID
+      th Time
+      th Type
       th Item
       th User
-      th Notes
-      th Loan time
-      th
-      th
-      th
+      th colspan=2
 
   tbody
     - @transactions.each do |transaction|
       tr
+        td = transaction.id
+        td = transaction.created_at.strftime('%D %r')
         td = transaction.transaction_type ? 'In' : 'Out'
-        td = transaction.item
-        td = transaction.user
-        td = transaction.notes
-        td = transaction.loan_time
+        td = link_to transaction.item.full_id, item_path(transaction.item)
+        td = link_to transaction.user.name, user_path(transaction.user)
         td = link_to 'Show', transaction
-        td = link_to 'Edit', edit_transaction_path(transaction)
-        td = link_to 'Destroy', transaction, data: { confirm: 'Are you sure?' }, method: :delete
+        - if can? :destroy, Transaction
+          td = link_to 'Destroy', transaction, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
-= link_to 'New Transaction', new_transaction_path
+- if can? :create, Transaction
+  = link_to 'New Transaction', new_transaction_path

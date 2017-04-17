@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		authorize! :manage, @user
 	end
-	def list
+	def index
 		@users = User.all
 		authorize! :manage, @users
 	end

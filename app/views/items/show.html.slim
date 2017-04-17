@@ -22,16 +22,12 @@ p
 				th Date
 				th width="10%" Type
 				th By
-				th Notes
-				th Time
 		tbody
 			- Transaction.where(item_id: @item.id).order(created_at: :desc).each do |t|
 				tr
 					td = link_to t.created_at.strftime('%m/%d/%Y %I:%M %p'), transaction_path(t)
 					td = t.transaction_type ? 'In' : 'Out'
 					td = link_to User.find(t.user_id).name, user_path(User.find(t.user_id))
-					td = t.notes
-					td = t.loan_time.to_s + ' days'
 
 
 

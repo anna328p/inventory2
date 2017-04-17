@@ -17,15 +17,15 @@ html
 							.vcenter
 								span.vcenter-span
 									- if user_signed_in?
-										= link_to "<img class=\"profile-img\" src=\"#{current_user.image}\"></img>".html_safe, edit_user_registration_path(current_user)
+										= link_to "<img class=\"profile-img\" src=\"#{current_user.image}\"></img>".html_safe, user_path(current_user)
 										span class="log-icon"
-											= link_to '<i class="material-icons">power_settings_new</i>'.html_safe, destroy_user_session_path, :method => :delete
+											i.material-icons = link_to 'power_settings_new', destroy_user_session_path, :method => :delete
 									- else
 										span class="log-icon"
-											= link_to '<i class="material-icons">exit_to_app</i>'.html_safe, user_google_oauth2_omniauth_authorize_path
+											i.material-icons = link_to 'exit_to_app', user_google_oauth2_omniauth_authorize_path
 											/new_user_session_path
 									span class="log-icon"
-										= link_to '<i class="material-icons">home</i>'.html_safe, root_path
+										i.material-icons = link_to 'home', root_path
 				- if flash[:alert]
 					.alert.red-text = flash[:alert]
 				- if flash[:notice]

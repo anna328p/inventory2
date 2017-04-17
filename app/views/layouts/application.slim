@@ -26,10 +26,10 @@ html
 											/new_user_session_path
 									span class="log-icon"
 										= link_to '<i class="material-icons">home</i>'.html_safe, root_path
-				- if flash[:notice]
-					.notice = flash[:notice]
 				- if flash[:alert]
 					.alert.red-text = flash[:alert]
+				- if flash[:notice]
+					.notice = flash[:notice]
 		main
 			.section
 				.container = yield

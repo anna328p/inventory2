@@ -18,9 +18,6 @@ class TransactionsController < ApplicationController
 		@transaction = Transaction.new
 	end
 
-	# GET /transactions/1/edit
-	def edit
-	end
 
 	# POST /transactions
 	# POST /transactions.json
@@ -48,20 +45,6 @@ class TransactionsController < ApplicationController
 		end
 	end
 
-	# PATCH/PUT /transactions/1
-	# PATCH/PUT /transactions/1.json
-	def update
-		respond_to do |format|
-			if @transaction.update(transaction_params)
-				format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
-				format.json { render :show, status: :ok, location: @transaction }
-			else
-				format.html { render :edit }
-				format.json { render json: @transaction.errors, status: :unprocessable_entity }
-			end
-		end
-	end
-
 	# DELETE /transactions/1
 	# DELETE /transactions/1.json
 	def destroy
@@ -73,6 +56,42 @@ class TransactionsController < ApplicationController
 	end
 
 	def check_in
+		@transaction = Transaction.new
+
+		# noinspection RubyAssignmentExpressionInConditionalInspection
+		if match = params[:iid].match(/([A-Za-z]{3})\s*0*(\d+)/i)
+			item_code, itemid = match.captures
+		else
+			flash[:notice] = "Error: #{params[:iid]} is not a valid Item ID."
+			@transaction.destroy
+			redirect_to root_path
+			return
+		end
+		puts item_code, itemid
+
+		itemtype = ItemType.find_by! code: item_code.upcase
+
+		item = Item.find_by! item_type: itemtype, inst_num: itemid.to_i
+
+		unless item.checked_out
+			flash[:notice] = "Error: #{item.full_id} is not checked out."
+			@transaction.destroy
+			redirect_to root_path
+			return
+		end
+
+		@transaction.item_id = item.id
+		@transaction.user_id = current_user.id
+		@transaction.transaction_type = true
+		@transaction.save
+
+		item.user_id = nil
+		item.checked_out = false
+		item.save
+
+		flash[:notice] = item.full_id + ' successfully checked in.'
+
+		redirect_to root_path
 	end
 
 	def check_out
@@ -82,13 +101,23 @@ class TransactionsController < ApplicationController
 		if match = params[:iid].match(/([A-Za-z]{3})\s*0*(\d+)/i)
 			item_code, itemid = match.captures
 		else
-			raise Error('Bad item ID')
+			flash[:notice] = "Error: #{params[:iid]} is not a valid Item ID."
+			@transaction.destroy
+			redirect_to root_path
+			return
 		end
 		puts item_code, itemid
 
 		itemtype = ItemType.find_by! code: item_code.upcase
 
 		item = Item.find_by! item_type: itemtype, inst_num: itemid.to_i
+
+		if item.checked_out
+			flash[:notice] = "Error: #{item.full_id} is already checked out."
+			@transaction.destroy
+			redirect_to root_path
+			return
+		end
 
 		@transaction.item_id = item.id
 		@transaction.user_id = current_user.id

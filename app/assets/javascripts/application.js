@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require materialize-sprockets
 //= require_tree .
 
@@ -22,3 +22,8 @@ function material_select() {
 $(document).ready(function() {
     $('select').material_select();
 });
+$(document).on('turbolinks:load', function() {
+    $('select').material_select();
+});
+
+//= require turbolinks

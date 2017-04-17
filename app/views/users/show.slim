@@ -1,0 +1,16 @@
+- content_for :title, "#{@user.name}'s profile"
+
+.row
+	.col.s12.m6.l4
+		h4 Image
+		.center-align
+			img src=@user.image width="50%"
+	.col.s12.m6.l4
+		h4 Checked out
+		- Item.where(user_id: @user.id).each do |i|
+			p = link_to i.full_id, item_path(i)
+	.col.s12.m6.l4
+		h4 History
+		- Transaction.where(user_id: @user.id).each do |t|
+			p = link_to t.description_for_profile, transaction_path(t)
+

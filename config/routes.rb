@@ -4,9 +4,11 @@ Rails.application.routes.draw do
 	get 'transactions/check_out'
 	get 'transactions/check_in'
   resources :transactions
+
   get 'admin/index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+	get 'users/list'
 	resources :users
 
 	get 'index/index'

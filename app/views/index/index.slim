@@ -1,8 +1,17 @@
 - content_for :title, 'Tech Lab Inventory'
-.container
-  .section
-    .row
-      .col.s12.m4.l4.offset-m2.offset-l2.center-align
-        a class="waves-effect waves-light btn-large" href="/transactions/check_out" Check Out
-      .col.s12.m4.l4.center-align
-        a class="waves-effect waves-light btn-large" href="/transactions/check_in" Check In
+.row
+	.col.s12.m4.offset-m1.center-align
+		form action=transactions_check_out_path
+			.input-field
+				input type="text" name="iid" id="iid_ci_inp"
+				label for="iid_ci_inp" Item ID
+			.input-field
+				button type="submit" class="waves-effect waves-light btn" Check Out
+	.col.s12.m4.offset-m2.center-align
+		form action=transactions_check_in_path
+			.input-field
+				input type="text" name="iid" id="iid_ci_inp"
+				label for="iid_ci_inp" Item ID
+			.input-field
+				button type="submit" class="waves-effect waves-light btn" Check In
+

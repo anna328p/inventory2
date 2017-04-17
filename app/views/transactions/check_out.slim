@@ -1,4 +1,6 @@
 - content_for :title, 'Check out'
 
 - form_for @transaction do |f|
-	-
+	input type="text" name="iid" id="iid"
+	label for="iid" Item ID
+	= f.submit class: 'waves-effect waves-light btn'

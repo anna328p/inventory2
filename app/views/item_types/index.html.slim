@@ -1,19 +1,19 @@
 - content_for :title, 'Listing item types'
 
 table
-  thead
-    tr
-      th Code
-      th Name
-      th Description
-      th
+	thead
+		tr
+			th Code
+			th Name
+			th Description
+			th
 
-  tbody
-    - @item_types.each do |item_type|
-      tr
-        td = item_type.code
-        td = item_type.name
-        td = item_type.description
+	tbody
+		- @item_types.each do |item_type|
+			tr
+				td = item_type.code
+				td = item_type.name
+				td = item_type.description
 				td
 					- if can? :show, ItemType
 						i.material-icons = link_to 'pageview', item_type
@@ -21,6 +21,10 @@ table
 						i.material-icons = link_to 'edit', edit_item_path(item_type)
 					- if can? :destroy, ItemType
 						i.material-icons = link_to 'delete', item_type, data: { confirm: 'Are you sure?' }, method: :delete
+		- if can? :create, ItemType
+			tr
+				- form_for @item,
+				td
 
 br
 

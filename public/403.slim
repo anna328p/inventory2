@@ -1,0 +1,30 @@
+doctype html
+html
+	head
+		title 403 Forbidden
+		script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"
+		link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"
+		script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"
+		link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+		| <style>.vcenter {display:table;height:100px;width:100%}
+		| .vcenter-span{display: table-cell;vertical-align:middle}</style>
+	body
+		header.page-header
+			.container
+				.row
+					.col.s12.m10
+						h2 403 Forbidden
+					.col.s12.m2
+						.right-align
+							.vcenter
+								span.vcenter-span
+									span class="log-icon"
+										a href="/"
+											i.material-icons home
+		main
+			.section
+				.container
+					p.red-text You are not authorized to access this page.
+					p Try logging in. If you were already logged in, you may not have the necessary privileges to load this page.
+					p
+						a href='/' class='waves-effect waves-light btn-large' Home

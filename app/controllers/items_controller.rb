@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.all
+		@item = Item.new
   end
 
   # GET /items/1

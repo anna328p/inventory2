@@ -3,8 +3,8 @@
 	.col.s12.m4.offset-m1.center-align
 		form action=transactions_check_out_path
 			.input-field
-				input type="text" name="iid" id="iid_ci_inp"
-				label for="iid_ci_inp" Item ID
+				input type="text" name="iid" id="iid_co_inp"
+				label for="iid_co_inp" Item ID
 			.input-field
 				button type="submit" class="waves-effect waves-light btn" Check Out
 	.col.s12.m4.offset-m2.center-align
@@ -19,6 +19,6 @@
 	.divider
 .row.center-align
 	.section
-		.col.s12.m4.l4 = link_to "Items", items_path, class: 'waves-effect waves-light btn'
-		.col.s12.m4.l4 = link_to "Transactions", transactions_path, class: 'waves-effect waves-light btn'
-		.col.s12.m4.l4 = link_to "Users", users_path, class: 'waves-effect waves-light btn'
+		.col.s12.m4.l4 = link_to 'Items', items_path, class: 'waves-effect waves-light btn'
+		.col.s12.m4.l4 = link_to 'Transactions', transactions_path, class: 'waves-effect waves-light btn'
+		.col.s12.m4.l4 = link_to 'Users', users_path, class: 'waves-effect waves-light btn'

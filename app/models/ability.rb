@@ -7,12 +7,14 @@ class Ability
 		user ||= User.new(guest: true) # guest user (not logged in)
 		if user.admin or user.id == 1
 			can :manage, :all
+			can :adminify, User
 		end
 		unless user.guest
 			can :create, Transaction
 			can :check_in, Transaction
 			can :check_out, Transaction
 		end
+		can :view, user
 		can :index, :all
 		can :show, :all
 		can :read, :all

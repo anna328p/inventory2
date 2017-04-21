@@ -14,3 +14,13 @@
 		- Transaction.where(user_id: @user.id).each do |t|
 			p = link_to t.description_for_profile, transaction_path(t)
 
+- if can? :adminify, @user
+	= form_for(user, as: user_name, url: user_path(resource_name), html: { method: :put }) do |f|
+		.actions = f.submit 'Update'
+			h3 Admin
+			.field.input-field
+				= f.checkbox :admin
+				= f.label :admin, 'Is the user an administrator?'
+			.field.input-field
+				= f.submit class: 'waves-effect waves-light btn'
+

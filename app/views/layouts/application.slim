@@ -2,9 +2,8 @@ doctype html
 html
 	head
 		= stylesheet_link_tag		'application', media: 'all', 'data-turbolinks-track' => true
-		= javascript_include_tag 'application', 'data-turbolinks-track' => true
 		= csrf_meta_tags
-		= render partial: "head"
+		= render partial: 'head'
 		title = yield :title
 	body
 		header.page-header
@@ -35,3 +34,4 @@ html
 				.container = yield
 		- if can? :manage, :all
 			= render 'application/admin_footer'
+		= javascript_include_tag 'application', 'data-turbolinks-track' => true

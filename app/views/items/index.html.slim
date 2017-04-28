@@ -12,7 +12,7 @@ table.fullwidth
 	tbody
 		- @items.each do |item|
 			tr
-				td = item.item_type.code + ' ' + item.inst_num.to_s
+				td = item.full_id
 				td.material-icons = item.checked_out ? 'check_circle' : 'not_interested'
 				td = item.user_id ? (link_to User.find(item.user_id).name, User.find(item.user_id)) : 'n/a'
 				td = item.notes
@@ -23,6 +23,22 @@ table.fullwidth
 						i.material-icons = link_to 'edit', edit_item_path(item)
 					- if can? :destroy, Item
 						i.material-icons = link_to 'delete', item, data: { confirm: 'Are you sure?' }, method: :delete
+		- if can? :create, Item
+			- form_for @item do |f|
+				tr
+					td
+						.input-field
+							= f.text_field :item_id
+							= f.label :item_id
+					td
+						.input-field
+							= f.text_field :inst_num
+							= f.label :inst_num
+					td colspan=2
+						.input-field
+							= f.text_field :notes
+							= f.label :notes
+					td = f.submit
 
 br
 

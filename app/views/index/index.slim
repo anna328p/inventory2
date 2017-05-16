@@ -1,9 +1,6 @@
 - content_for :title, 'Tech Lab Inventory'
 .row
-	- if user_signed_in?
-		= render partial: 'buttons'
-	- else
-		= render partial: 'buttons_disabled'
+	= render partial: 'buttons'
 .row
 	.section
 	.divider

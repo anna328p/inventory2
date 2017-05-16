@@ -12,7 +12,7 @@ table.fullwidth
 	tbody
 		- @items.each do |item|
 			tr
-				td = item.full_id
+				td = link_to(item.item_type.code, item_type_path(item.item_type)) + ' ' + item.inst_num
 				td.material-icons = item.checked_out ? 'check_circle' : 'not_interested'
 				td = item.user_id ? (link_to User.find(item.user_id).name, User.find(item.user_id)) : 'n/a'
 				td = item.notes

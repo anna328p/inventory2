@@ -12,6 +12,8 @@ class Ability
 			can :create, Transaction
 			can :check_in, Transaction
 			can :check_out, Transaction
+			can :check_in, :item
+			can :check_out, :item
 		end
 		can :view, User
 		can :index, :all

@@ -1,0 +1,10 @@
+You have checked out the item <%= link_to @transaction.item.full_id, item_url(@transaction.item) %>.
+====================================
+
+View the transaction <%= link_to 'here', transaction_url(@transaction) %>.
+
+View the item <%= link_to 'here', item_url(@transaction.item) %>.
+
+View all items of this type <%= link_to 'here', item_type_url(@transaction.item.item_type) %>.
+
+Thank you for using GE Inventory.

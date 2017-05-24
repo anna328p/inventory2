@@ -8,7 +8,7 @@
 
   .field.input-field
     = f.label :code
-    = f.text_field :code
+    = f.text_field :code, maxlength: 3, style: 'text-transform:uppercase'
   .field.input-field
     = f.label :name
     = f.text_field :name

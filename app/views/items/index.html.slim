@@ -3,17 +3,19 @@
 table.fullwidth
 	thead
 		tr
-			th ID
-			th Out?
+			th width="60px" ID
+			th width="40px" Out?
+			th Type
 			th User
-			th Notes
+			th  Notes
 			th Actions
 
 	tbody
 		- @items.each do |item|
 			tr
-				td = link_to(item.item_type.code, item_type_path(item.item_type)) + ' ' + item.inst_num
+				td = link_to(item.item_type.code, item_type_path(item.item_type)) + ' ' + item.inst_num.to_s
 				td.material-icons = item.checked_out ? 'check_circle' : 'not_interested'
+				td = link_to(item.item_type.name, item_type_path(item.item_type))
 				td = item.user_id ? (link_to User.find(item.user_id).name, User.find(item.user_id)) : 'n/a'
 				td = item.notes
 				td
@@ -23,6 +25,8 @@ table.fullwidth
 						i.material-icons = link_to 'edit', edit_item_path(item)
 					- if can? :destroy, Item
 						i.material-icons = link_to 'delete', item, data: { confirm: 'Are you sure?' }, method: :delete
+					- if can? :check_out, Item
+
 		- if can? :create, Item
 			- form_for @item do |f|
 				tr

@@ -1,0 +1,11 @@
+doctype html
+html
+	head
+		meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
+	body
+		h2 You have checked out the item #{link_to @transaction.item.full_id, item_url(@transaction.item)}.
+		p View the transaction #{link_to 'here', transaction_url(@transaction}.
+		p View the item #{link_to 'here', item_url(@transaction.item)}.
+		p View all items of this type #{link_to 'here', item_type_url(@transaction.item.item_type)
+		p
+			i Thank you for using GE Inventory.

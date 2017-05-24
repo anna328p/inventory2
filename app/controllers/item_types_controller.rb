@@ -28,6 +28,8 @@ class ItemTypesController < ApplicationController
   def create
     @item_type = ItemType.new(item_type_params)
 
+		@item_type.code.upcase!
+
     respond_to do |format|
       if @item_type.save
         format.html { redirect_to @item_type, notice: 'Item type was successfully created.' }

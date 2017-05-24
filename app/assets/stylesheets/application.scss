@@ -54,3 +54,13 @@ main {
 .fullwidth {
   width: 100%;
 }
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #2196F3;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #2196F3 ;
+  box-shadow: 0 1px 0 0 #2196F3;
+}

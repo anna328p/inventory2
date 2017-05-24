@@ -34,6 +34,7 @@ class TransactionsController < ApplicationController
 			i.save
 		end
 		@transaction.user = current_user
+
 		respond_to do |format|
 			if @transaction.save
 				format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
@@ -123,6 +124,8 @@ class TransactionsController < ApplicationController
 		@transaction.user_id = current_user.id
 		@transaction.transaction_type = false
 		@transaction.save
+
+		TransactionMailer.check_out_email(@transaction, current_user).deliver_later
 
 		item.user_id = current_user.id
 		item.checked_out = true

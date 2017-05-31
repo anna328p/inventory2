@@ -1,21 +1,5 @@
-p#notice = notice
+- content_for :title, "Transaction #{@transaction.id}"
 
-p
-  strong Transaction type:
-  = @transaction.transaction_type
-p
-  strong Item:
-  = @transaction.item
-p
-  strong User:
-  = @transaction.user
-p
-  strong Notes:
-  = @transaction.notes
-p
-  strong Loan time:
-  = @transaction.loan_time
+p = @transaction.description
 
-= link_to 'Edit', edit_transaction_path(@transaction)
-'  |
-= link_to 'Back', transactions_path
+= link_to 'Back', transactions_path, class: 'waves-effect waves-light btn blue'

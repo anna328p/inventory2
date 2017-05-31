@@ -10,7 +10,20 @@ html
 			nav.blue
 				.container
 					a.brand-logo href='/' = yield(:title)
-					ul.right#nav
+					a.button-collapse href='#' data-activates="mobile-nav"
+						i.material-icons menu
+					ul.right.hide-on-med-and-down#nav
+						li = link_to 'Home', root_path
+						li = link_to 'Items', items_path
+						li = link_to 'Transactions', transactions_path
+						li = link_to 'Users', users_path
+						- if user_signed_in?
+							li = link_to 'Log out', destroy_user_session_path, :method => :delete
+							li = link_to "<img class=\"profile-img\" src=\"#{current_user.image}\"></img>".html_safe, user_path(current_user)
+						- else
+							li = link_to 'Log in', user_google_oauth2_omniauth_authorize_path
+					ul.side-nav#mobile-nav
+						li = link_to 'Home', root_path
 						li = link_to 'Items', items_path
 						li = link_to 'Transactions', transactions_path
 						li = link_to 'Users', users_path

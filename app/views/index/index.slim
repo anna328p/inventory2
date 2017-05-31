@@ -1,12 +1,38 @@
 - content_for :title, 'Tech Lab Inventory'
 .row
-	= render partial: 'buttons'
-.row
 	.section
-	.divider
-.row.center-align
-	.section
-		.col.s12.m4.l4 = link_to 'Items', items_path, class: 'waves-effect waves-light btn blue'
-		.col.s12.m4.l4 = link_to 'Transactions', transactions_path, class: 'waves-effect waves-light btn blue'
-		.col.s12.m4.l4 = link_to 'Users', users_path, class: 'waves-effect waves-light btn blue'
-
+		.col.s12.m4.offset-m1.center-align
+			- if can? :check_out, :item
+				form action=transactions_check_out_path
+					.input-field
+						input type="text" name="iid" id="iid_co_inp"
+						label for="iid_co_inp" Item ID
+					.input-field
+						button type="submit" class="waves-effect waves-light btn blue" Check Out
+			- else
+				form action=transactions_check_out_path
+					.input-field
+						a.tooltipped data-tooltip='Log in first' data-position='top' data-delay="50" href='#signed-out-modal'
+							input disabled='disabled' type="text" name="iid" id="iid_co_inp"
+						label for="iid_co_inp" Item ID
+					.input-field
+						a.tooltipped data-tooltip='Log in first' data-position='top' data-delay="50" href='#signed-out-modal'
+							button.tooltipped type="submit" class="btn disabled" Check Out
+		.col.s12.m4.offset-m2.center-align
+			- if can? :check_in, :item
+				form action=transactions_check_in_path
+					.input-field
+						input type="text" name="iid" id="iid_ci_inp"
+						label for="iid_ci_inp" Item ID
+					.input-field
+						button type="submit" class="waves-effect waves-light btn blue" Check In
+			- else
+				form action=transactions_check_in_path
+					.input-field
+						a.tooltipped data-tooltip='Log in first' data-position='top' data-delay="50" href='#signed-out-modal'
+							input.tooltipped disabled='disabled' type="text" name="iid" id="iid_ci_inp"
+						label for="iid_ci_inp" Item ID
+					.input-field
+						a.tooltipped data-tooltip='Log in first' data-position='top' data-delay="50" href='#signed-out-modal'
+							button.tooltipped type="submit" class="btn disabled" Check In
+= render partial: 'signed_out_modal', locals: {name: 'signed-out-modal'}

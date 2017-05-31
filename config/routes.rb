@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+	get 'items/:id/check_out', controller: :items, action: :check_out
+	get 'items/:id/check_in', controller: :items, action: :check_in
 	resources :items
 
 	get 'transactions/check_out'
+
 	get 'transactions/check_in'
 	resources :transactions
 

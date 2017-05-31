@@ -26,6 +26,7 @@ table.fullwidth
 					- if can? :destroy, Item
 						i.material-icons = link_to 'delete', item, data: { confirm: 'Are you sure?' }, method: :delete
 					- if can? :check_out, Item
+						i.material-icons = link_to 'exit_to_app', "/items/#{item.id}/check_out"
 
 		- if can? :create, Item
 			- form_for @item do |f|

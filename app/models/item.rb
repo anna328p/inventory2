@@ -6,14 +6,13 @@ class Item < ApplicationRecord
 	def full_id
 		self.item_type.code + ' ' + self.inst_num.to_s
 	end
-	def check_in
+	def check_in!
 		@transaction = Transaction.new
 
-		unless self.checked_out
-			flash[:notice] = "Error: #{self.full_id} is not checked out."
+		# noinspection RubyControlFlowConversionInspection
+		if not self.checked_out
 			@transaction.destroy
-			redirect_to root_path
-			return
+			raise :not_checked_out
 		end
 
 		@transaction.item_id = self.id
@@ -29,14 +28,12 @@ class Item < ApplicationRecord
 
 		redirect_to root_path
 	end
-	def check_out
+	def check_out!
 		@transaction = Transaction.new
 
 		if self.checked_out
-			flash[:notice] = "Error: #{self.full_id} is already checked out."
 			@transaction.destroy
-			redirect_to root_path
-			return
+			raise :already_checked_out
 		end
 
 		@transaction.item_id = self.id
@@ -53,5 +50,17 @@ class Item < ApplicationRecord
 		flash[:notice] = self.full_id + ' successfully checked out.'
 
 		redirect_to root_path
+	end
+
+	def user
+		begin
+			return User.find(self.user_id)
+		rescue RecordNotFound
+			return nil
+		end
+	end
+
+	def user!
+		User.find(self.user_id)
 	end
 end

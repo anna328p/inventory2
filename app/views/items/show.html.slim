@@ -9,7 +9,7 @@ p
 	= @item.inst_num
 p
 	strong Checked out:
-	= @item.checked_out ? ('Yes, by ' + link_to(@item.user.name, user_path(@item.user_id))).html_safe : 'No'
+	= @item.checked_out ? ('Yes, by ' + link_to(@item.user!.name, user_path(@item.user_id))).html_safe : 'No'
 p
 	strong Notes:
 	= @item.notes

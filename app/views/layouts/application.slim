@@ -6,29 +6,24 @@ html
 		= render partial: 'head'
 		title = yield :title
 	body
-		header.page-header
-			.container
-				.row
-					.col.s12.m10
-						h2 = yield(:title)
-					.col.s12.m2
-						.right-align
-							.vcenter
-								span.vcenter-span
-									- if user_signed_in?
-										= link_to "<img class=\"profile-img\" src=\"#{current_user.image}\"></img>".html_safe, user_path(current_user)
-										span.log-icon
-											i.material-icons = link_to 'power_settings_new', destroy_user_session_path, :method => :delete
-									- else
-										span.log-icon
-											i.material-icons = link_to 'exit_to_app', user_google_oauth2_omniauth_authorize_path
-											/new_user_session_path
-									span.log-icon
-										i.material-icons = link_to 'home', root_path
-				- if flash[:alert]
-					.alert.red-text = flash[:alert]
-				- if flash[:notice]
-					.notice = flash[:notice]
+		header.page-header#header
+			nav.blue
+				.container
+					a.brand-logo href='/' = yield(:title)
+					ul.right#nav
+						li = link_to 'Items', items_path
+						li = link_to 'Transactions', transactions_path
+						li = link_to 'Users', users_path
+						- if user_signed_in?
+							li = link_to 'Log out', destroy_user_session_path, :method => :delete
+							li = link_to "<img class=\"profile-img\" src=\"#{current_user.image}\"></img>".html_safe, user_path(current_user)
+						- else
+							li = link_to 'Log in', user_google_oauth2_omniauth_authorize_path
+								/new_user_session_path
+			- if flash[:alert]
+				.container.alert.red-text = flash[:alert]
+			- if flash[:notice]
+				.container.notice = flash[:notice]
 		main
 			.section
 				.container = yield

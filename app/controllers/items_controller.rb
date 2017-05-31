@@ -64,7 +64,20 @@ class ItemsController < ApplicationController
 	end
 
 	def check_in
-		@item.check_in
+		begin
+			@item.check_in!
+		rescue
+			flash[:notice] = "Error: #{@item.full_id} is not checked out."
+		end
+		redirect_to root_path
+	end
+
+	def check_out
+		begin
+			@item.check_out!
+		rescue
+			flash[:notice] = "Error: #{@item.full_id} is already checked out."
+		end
 		redirect_to root_path
 	end
 

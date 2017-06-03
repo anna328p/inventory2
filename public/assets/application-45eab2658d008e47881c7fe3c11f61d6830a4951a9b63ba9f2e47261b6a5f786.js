@@ -19424,5 +19424,6 @@ function material_select() {
 $(document).on('turbolinks:load', function() {
     $('select').material_select();
     $('.modal').modal();
+    $(".button-collapse").sideNav();
 });
 

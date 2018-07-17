@@ -5,6 +5,7 @@ html
 		= csrf_meta_tags
 		= render partial: 'head'
 		title = yield :title
+		= javascript_include_tag 'application', 'data-turbolinks-track' => true
 	body
 		header.page-header#header
 			nav.blue
@@ -42,4 +43,3 @@ html
 				.container = yield
 		- if can? :manage, :all
 			= render 'application/admin_footer'
-		= javascript_include_tag 'application', 'data-turbolinks-track' => true

@@ -15,8 +15,8 @@ jobs:
         ruby-version: 2.6.x
     - name: Set up build dependencies
       run: |
-        apt update
-        apt install libsqlite3-dev 
+        sudo apt-get update
+        sudo apt-get install libsqlite3-dev 
     - name: Build and test with Rake
       run: |
         gem install bundler

@@ -1,4 +1,6 @@
-# Tech Lab Inventory System #
+# Tech Lab Inventory System
+
+![Ruby](https://github.com/dkudriavtsev/inventory2/workflows/Ruby/badge.svg)
 
 This is under construction.
 

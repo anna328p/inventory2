@@ -14,6 +14,8 @@ gem 'uglifier', '~> 4.2'
 gem 'coffee-rails', '~> 5.0'
 # gem 'therubyracer', platforms: :ruby
 
+gem "actionview", ">= 5.1.6.2"
+
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jquery-turbolinks'
